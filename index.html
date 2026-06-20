@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-direction="clean">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bailamos! — Find your floor, anywhere you are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="site.css"/>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Bailamos home">
+      <span class="mark"><span>B</span></span>
+      <span class="word">Bailamos<b>!</b></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#problem">The problem</a>
+      <a href="#how">How it works</a>
+      <a href="#cities">Cities</a>
+      <a href="#creators">For organizers</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#get" class="btn btn-primary" data-waitlist><span class="full">Get early access</span><span class="short" style="display:none;">Early access</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Built by dancers, for dancers</span>
+      <h1 id="heroHeadline">Find your floor, <span class="accent">anywhere you are.</span></h1>
+      <div class="launch-badge">
+        <span class="lb-dot"></span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.9 2 4.5 5.4 4.5 9.5c0 5.5 7.5 12.5 7.5 12.5s7.5-7 7.5-12.5C19.5 5.4 16.1 2 12 2zm0 10.2a2.7 2.7 0 110-5.4 2.7 2.7 0 010 5.4z"/></svg>
+        <span>Now launching in <b>Los Angeles</b></span>
+      </div>
+      <p class="lede" id="heroLede">Every salsa social, bachata night, and kizomba room around you — on one live map. No scrolling three group chats. No asking a stranger where the party moved.</p>
+      <div class="hero-actions">
+        <a href="#get" class="btn btn-primary" data-waitlist>Get early access</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-dots"><span>S</span><span>B</span><span>K</span></div>
+        <span>Salsa · Bachata · Kizomba — and every Latin social</span>
+      </div>
+    </div>
+
+    <div class="hero-art reveal">
+      <div id="screen-hero"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PROBLEM (one-two punch) ═══════════════ -->
+<section class="band" id="problem">
+  <div class="wrap">
+    <div class="problem-head reveal">
+      <div class="sec-head">
+        <span class="eyebrow">The problem</span>
+        <h2 class="serif">The dancing is out there. Finding it is the hard part.</h2>
+        <p>For a scene built on showing up in person, it's strangely hard to know where to <em>be</em>. Two things kill the night before it starts.</p>
+      </div>
+      <div class="problem-count" aria-hidden="true">2</div>
+    </div>
+
+    <div class="problems">
+      <!-- problem 1 -->
+      <article class="problem-card reveal">
+        <div class="problem-vis">
+          <div class="vis-map">
+            <span class="qm" style="top:30px;left:40px;">?</span>
+            <span class="qm" style="top:120px;right:50px;">?</span>
+            <span class="qm" style="bottom:30px;left:90px;">?</span>
+            <div class="pin" style="top:60px;left:120px;"><i>?</i></div>
+            <div class="pin" style="top:150px;left:60px;"><i>?</i></div>
+            <div class="pin" style="bottom:50px;right:70px;"><i>?</i></div>
+            <div class="pin" style="top:90px;right:40px;"><i>?</i></div>
+          </div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-tag"><span class="dot"></span>New city, no scene</div>
+          <h3>You travel — and the floor disappears.</h3>
+          <p>You land in a new city ready to dance and hit a wall. Which nights are good? Where did the Tuesday social move to? Locals just <em>know</em>. Visitors get a cold map and a guess.</p>
+        </div>
+      </article>
+
+      <!-- problem 2 -->
+      <article class="problem-card reveal">
+        <div class="problem-vis">
+          <div class="vis-social">
+            <div class="post locked">
+              <div class="row"><span class="ava"></span><span class="ln" style="width:60px;"></span></div>
+              <div class="media"></div>
+              <div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+            </div>
+            <div class="post">
+              <div class="row"><span class="ava"></span><span class="ln" style="width:44px;"></span></div>
+              <div class="media"></div>
+            </div>
+            <div class="post">
+              <div class="row"><span class="ava"></span><span class="ln" style="width:52px;"></span></div>
+              <div class="media"></div>
+            </div>
+            <div class="post locked">
+              <div class="row"><span class="ava"></span><span class="ln" style="width:38px;"></span></div>
+              <div class="media"></div>
+              <div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+            </div>
+          </div>
+        </div>
+        <div class="problem-body">
+          <div class="problem-tag"><span class="dot"></span>Locked behind the feed</div>
+          <h3>No Instagram? You don't exist to the scene.</h3>
+          <p>Half the events live only in an Instagram story or a private Facebook group. Not on social, or not following the right promoter? The night happens without you ever hearing about it.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SOLUTION BRIDGE ═══════════════ -->
+<section class="bridge reveal">
+  <div class="wrap">
+    <p class="serif big">So we built one honest map of the social-dance world — no Instagram, no Facebook, <em>just a new way to find dancing.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="band" id="how">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">How Bailamos works</span>
+      <h2 class="serif">Three taps to the dance floor.</h2>
+      <p>Whether you're home or three time zones away, the answer to “where do I dance tonight?” is in your pocket.</p>
+    </div>
+
+    <div class="steps">
+      <!-- step 1 -->
+      <div class="step reveal">
+        <div class="step-art" id="screen-map"></div>
+        <div class="step-num">1</div>
+        <h3>Drop into any city</h3>
+        <p>Open the app anywhere on earth and the map fills with what's happening around you — tonight, this week, this weekend.</p>
+      </div>
+      <!-- step 2 -->
+      <div class="step reveal">
+        <div class="step-art" id="screen-list"></div>
+        <div class="step-num">2</div>
+        <h3>See the whole week</h3>
+        <p>Every social and class — pulled into one list, grouped by day. Times, venues, cover, in or out. No login to anyone's feed.</p>
+      </div>
+      <!-- step 3 -->
+      <div class="step reveal">
+        <div class="step-art" id="screen-detail"></div>
+        <div class="step-num">3</div>
+        <h3>Show up &amp; dance</h3>
+        <p>Get the address, doors, cover and DJ up front — then go do the thing the app can't: dance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SAVED ═══════════════ -->
+<section class="band" id="saved">
+  <div class="wrap feature-grid">
+    <div class="feature-art reveal" id="screen-saved"></div>
+    <div class="feature-copy reveal">
+      <span class="eyebrow">Never lose the night</span>
+      <h2 class="serif">Save the ones<br/>you love.</h2>
+      <p>Find a social you don't want to miss? Save it. Every going, interested, and saved event lands in one tab — so the night you spotted on Tuesday is still there on Friday.</p>
+      <ul class="ticks">
+        <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span><b>Going, interested &amp; saved</b> — all in one place, never buried in a feed.</span></li>
+        <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span>Sorted into <b>This week</b> and <b>Past</b>, so nothing slips by.</span></li>
+        <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span>One tap back to directions, cover, and who's spinning.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CITIES ═══════════════ -->
+<section class="band alt" id="cities">
+  <div class="wrap cities-grid">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Live &amp; coming soon</span>
+      <h2 class="serif">Where Bailamos lives.</h2>
+      <p>We open a city when its scene is ready — real venues, real socials, real people. Don't see yours? Add your vote and we'll head where the demand is loudest.</p>
+      <div class="hero-actions" style="margin-top:26px;">
+        <a href="#get" class="btn btn-primary" data-waitlist>Check your city</a>
+      </div>
+    </div>
+
+    <div class="cities-panel reveal">
+      <div class="cities-tabs">
+        <div class="cities-tab on"><span class="live-dot"></span>Live now <span class="cnt">2</span></div>
+        <div class="cities-tab"><span class="soon-dot"></span>Coming soon <span class="cnt">1</span></div>
+      </div>
+      <!-- live -->
+      <div class="crow">
+        <span class="cdot live"></span>
+        <div class="cmain"><div class="cname">Los Angeles, CA <span class="tagchip home">Flagship</span></div><div class="csub">Live · socials &amp; classes on the map</div></div>
+        <div class="cnum"><b class="livepill">Live</b></div>
+      </div>
+      <div class="crow">
+        <span class="cdot live"></span>
+        <div class="cmain"><div class="cname">San Diego, CA</div><div class="csub">Live · socials &amp; classes on the map</div></div>
+        <div class="cnum"><b class="livepill">Live</b></div>
+      </div>
+      <!-- soon -->
+      <div class="crow">
+        <span class="cdot soon"></span>
+        <div class="cmain"><div class="cname" style="color:var(--text-soft);">New York City, NY</div><div class="csub">Coming soon · be first when it opens</div></div>
+        <button class="notify" data-waitlist><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Notify me</button>
+      </div>
+      <div class="cities-foot">
+        <div class="ft"><b>Don't see your city?</b><span>We open where demand is loudest.</span></div>
+        <a href="#get" class="req" data-waitlist>Request</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CREATORS ═══════════════ -->
+<section class="band" id="creators">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">For promoters, DJs &amp; instructors</span>
+      <h2 class="serif">Run the night? Put it on the map.</h2>
+      <p>The dancers are already looking. Become a creator — free — and your socials and classes surface to everyone searching their city, no follower count required.</p>
+    </div>
+    <div class="creator-grid">
+      <div class="creator-copy reveal">
+        <div class="creator-feats">
+          <div class="cfeat">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.5L21 9l-5 4.2L17.5 20 12 16.3 6.5 20 8 13.2 3 9l6.6-.5z"/></svg></span>
+            <div class="cx"><h4>Post socials &amp; classes in minutes</h4><p>One simple form — flyer, dates, recurring nights, location, pricing, and the dances on offer.</p></div>
+          </div>
+          <div class="cfeat">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+            <div class="cx"><h4>Get discovered on the map</h4><p>Your events show up on the map and in the weekly list.</p></div>
+          </div>
+          <div class="cfeat">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><circle cx="18" cy="9" r="2.4"/></svg></span>
+            <div class="cx"><h4>See who's coming <span class="soon-badge">Coming soon</span></h4><p>RSVP counts, saves, and a rough read on your crowd so you can plan the room.</p></div>
+          </div>
+          <div class="cfeat">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 11-3-6.7M21 3v6h-6"/></svg></span>
+            <div class="cx"><h4>Keep it current</h4><p>Create, edit, cancel, or reschedule an event for users to see.</p></div>
+          </div>
+        </div>
+        <div class="creator-cta">
+          <a href="#get" class="btn btn-primary" data-waitlist="creator">List your events — it's free</a>
+        </div>
+      </div>
+      <div class="creator-art reveal">
+        <div id="screen-creator"></div>
+        <div id="screen-create"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOUNDER / STORY ═══════════════ -->
+<section class="band alt" id="story">
+  <div class="wrap story">
+    <figure class="story-photo reveal">
+      <img src="assets/rudy-story.jpg" alt="Rudy social dancing"/>
+      <figcaption>On the floor.</figcaption>
+    </figure>
+    <div class="reveal">
+      <span class="eyebrow">Our story</span>
+      <blockquote>“I've been social dancing for 20 years, and I built the app I always wished I had.”</blockquote>
+      <p class="story-p">For nearly 20 years, social dancing has been part of my life. Salsa, bachata, the whole world that opens up the first time you step onto a crowded dance floor at 11pm on a Tuesday and realize this scene exists in every city, if you can find it.</p>
+      <p class="story-p story-punch">That last part has always been the problem.</p>
+      <p class="story-p">Every time I traveled — a new city for work, a weekend trip, even abroad — the first thing I'd do is try to find where to dance that night. And every time, it was the same scavenger hunt: digging through Facebook groups that hadn't been updated in months, scrolling Instagram for flyers buried under last week's posts, asking strangers, hoping someone in a forum had posted something recent. Sometimes I'd find an incredible night. Sometimes I'd show up to an empty venue. Often I'd give up and miss out entirely.</p>
+      <p class="story-p story-punch">It shouldn't be this hard to find a dance floor.</p>
+      <p class="story-p">So I built Bailamos! — a single place to find local socials, classes, and events, whether you're home or visiting somewhere new. Built for the way dancers actually look for events: fast, local, and current.</p>
+      <p class="story-p">I've been social dancing for 20 years, and I built the app I always wished I had.</p>
+      <div class="by">— <b>Rudy</b>, Founder. Dancer for 20 years, software engineer for a living.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="band" id="get">
+  <div class="wrap">
+    <div class="cta reveal" style="max-width:920px;">
+      <div class="cta-inner">
+        <span class="eyebrow" style="color:var(--terra);">Bailamos! · Let's dance</span>
+        <h2>Your next floor is almost on the map.</h2>
+        <p>Free to download, free to explore every city. We're putting the finishing touches on it now — iPhone first, Android to follow.</p>
+        <div class="cta-actions">
+          <a href="#get" class="btn cta-join" data-waitlist>Get early access →</a>
+        </div>
+        <div class="store-eyebrow"><span class="pulse"></span>Coming soon</div>
+        <div class="stores">
+          <div class="store soon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.1 1-.3 2-1 2.7-.6.7-1.7 1.3-2.7 1.2-.1-1 .4-2 1-2.6.7-.7 1.8-1.2 2.7-1.3zM19 17.3c-.5 1.1-.7 1.6-1.4 2.6-.9 1.4-2.2 3.1-3.8 3.1-1.4 0-1.8-.9-3.7-.9s-2.3.9-3.7.9c-1.6 0-2.8-1.5-3.7-2.9-2.5-3.9-2.8-8.5-1.2-11 1.1-1.7 2.8-2.7 4.4-2.7 1.6 0 2.7 1 4 1 1.3 0 2-1 4-1 1.4 0 2.9.8 4 2.1-3.5 1.9-2.9 6.9.8 8.7z"/></svg>
+            <span class="lab"><span class="s">Coming soon to</span><span class="b">App Store</span></span>
+          </div>
+          <div class="store soon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3 13.5 12 3.6 21.7c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1zM15 13.5l2.6 2.6-9.4 5.4 6.8-8zM18.9 10.2c.7.4 1.1.9 1.1 1.6s-.4 1.2-1.1 1.6l-2.2 1.3L14 12l2.7-2.7 2.2 1zM8.2 2.7l9.4 5.4L15 10.7 8.2 2.7z"/></svg>
+            <span class="lab"><span class="s">Coming soon to</span><span class="b">Google Play</span></span>
+          </div>
+        </div>
+        <p class="micro">Launching first in Los Angeles — more cities right behind it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top"><span class="mark"><span>B</span></span><span class="word">Bailamos<b>!</b></span></a>
+        <p class="tagline">Built by dancers, for dancers.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#cities">Cities</a>
+          <a href="#get">Download</a>
+        </div>
+        <div class="foot-col">
+          <h4>Community</h4>
+          <a href="#">For organizers</a>
+          <a href="#">Add an event</a>
+          <a href="#story">Our story</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="#">Contact</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 Bailamos. Made for the floor.</span>
+      <span>Salsa · Bachata · Kizomba · Cumbia</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ waitlist modal ═══════════════ -->
+<div class="wl-overlay" id="wlOverlay" hidden>
+  <div class="wl-backdrop" data-wl-close></div>
+  <div class="wl-card" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
+    <button class="wl-close" aria-label="Close" data-wl-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="wl-form-wrap" id="wlFormWrap">
+      <span class="eyebrow">Early access</span>
+      <h3 id="wlTitle" class="serif">Get on the list.</h3>
+      <p class="wl-sub">Be first on the floor when Bailamos opens near you. We'll email you the moment it's live — nothing else.</p>
+      <form id="wlForm" novalidate>
+        <label class="wl-field">
+          <span class="wl-lab">Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@email.com"/>
+        </label>
+        <label class="wl-field">
+          <span class="wl-lab">Your city</span>
+          <input type="text" name="city" required autocomplete="address-level2" placeholder="Los Angeles, CA"/>
+        </label>
+        <div class="wl-field">
+          <span class="wl-lab">I'm a…</span>
+          <div class="wl-roles" role="radiogroup">
+            <label class="wl-role"><input type="radio" name="role" value="attendee" checked/><span>Dancer / Attendee</span></label>
+            <label class="wl-role"><input type="radio" name="role" value="creator"/><span>Creator / Promoter</span></label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary wl-submit">Join the waitlist</button>
+        <p class="wl-error" id="wlError" hidden></p>
+        <p class="wl-fine">No spam, ever. Just the launch.</p>
+      </form>
+    </div>
+    <div class="wl-success" id="wlSuccess" hidden>
+      <div class="wl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      <h3 class="serif">You're on the list!</h3>
+      <p>We'll email <b class="wl-r-email"></b> the moment Bailamos opens in <b class="wl-r-city"></b>.</p>
+      <button class="btn btn-ghost wl-done" data-wl-close>Done</button>
+    </div>
+  </div>
+</div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="22" fill="#5E1B25"/>
+    <rect x="18" y="18" width="64" height="64" rx="16" fill="url(#g)"/>
+    <text x="50" y="64" font-family="Georgia, serif" font-style="italic" font-size="40" fill="#FFE9C9" text-anchor="middle">B</text>
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0714A"/><stop offset="1" stop-color="#7E1530"/></linearGradient></defs>
+  </svg>
+</template>
+
+<!-- ═══════════════ behavior ═══════════════ -->
+<script>
+  // nav shadow on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<script src="site-screens.js"></script>
+<script src="waitlist.js"></script>
+
+
+</body>
+</html>
