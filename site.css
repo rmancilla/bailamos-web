@@ -421,6 +421,7 @@ section { position: relative; }
   .problem-count { font-size: 88px; }
   .cta { padding: 52px 26px; border-radius: 26px; }
   .nav-cta .btn span.full { display: none; }
+  .nav-cta .btn span.short { display: inline !important; }
 }
 
 /* ═══════════ real-screenshot phone frames ═══════════ */
