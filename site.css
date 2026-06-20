@@ -160,7 +160,7 @@ body {
 .store:hover { transform: translateY(-2px); }
 .store svg { width: 26px; height: 26px; flex-shrink: 0; }
 .store .lab { line-height: 1.1; text-align: left; }
-.store .lab .s { font-size: 10px; opacity: 0.75; font-weight: 600; }
+.store .lab .s { font-size: 10px; opacity: 0.75; font-weight: 600; display: block; margin-bottom: 3px; }
 .store .lab .b { font-size: 16px; font-weight: 800; letter-spacing: 0.01em; }
 
 /* ═══════════════════════════ nav ═══════════════════════════ */
