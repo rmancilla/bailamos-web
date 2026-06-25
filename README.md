@@ -23,7 +23,7 @@ Either way, treat the HTML as the source of truth for layout, spacing, color, an
 ## Page Sections (top → bottom)
 All sections are centered in a `.wrap` container: `max-width: 1180px; padding: 0 32px`. Section vertical rhythm: `.band { padding: 96px 0 }`. Alternating sections use `.band.alt` (slightly darker paper background).
 
-1. **Sticky nav** — left: logo (CSS-gradient rounded-square mark + "Bailamos!" wordmark in Instrument Serif). Center/right: anchor links (The problem, How it works, Cities, For organizers) + a primary "Get early access" button. Gains a bottom border on scroll (`.nav.scrolled`). Links hidden under 940px.
+1. **Sticky nav** — left: logo (the **app-icon PNG** in a 38px rounded-square `.mark` + "Bailamos!" wordmark in Instrument Serif). Center/right: anchor links (The problem, How it works, Cities, For organizers) + a primary "Get early access" button. Gains a bottom border on scroll (`.nav.scrolled`). Links hidden under 940px.
 
 2. **Hero** — 2-col grid (`1.05fr 0.95fr`), collapses to 1-col under 940px (phone moves above copy).
    - Left: eyebrow "Built by dancers, for dancers"; H1 "Find your floor, **anywhere you are.**" (accent on 2nd line); a prominent **launch badge** ("Now launching in **Los Angeles**" — terracotta pill, 1.5px accent border, pulsing dot + map-pin icon); lede paragraph; two buttons ("Get early access" primary → opens waitlist, "See how it works" ghost → #how); proof row (3 letter avatars + "Salsa · Bachata · Kizomba — and every Latin social").
@@ -43,9 +43,9 @@ All sections are centered in a `.wrap` container: `max-width: 1180px; padding: 0
 
 9. **Our Story** (`#story`, alt bg) — `.story` grid (260px / 1fr). Left: a **small, subtle** square founder photo (`assets/rudy-story.jpg`, 1:1, ~240–260px, rounded, soft shadow) that is `position: sticky` on desktop, with an italic caption "On the floor." Right: eyebrow, a serif blockquote tagline, the multi-paragraph founder story (two short punch-lines rendered in italic serif via `.story-punch`), signed "**Rudy**, Founder. Dancer for 20 years, software engineer for a living."
 
-10. **Final CTA** (`#get`) — maroon rounded panel: eyebrow, serif H2 "Your next floor is almost on the map.", paragraph, "Get early access →" button (opens waitlist), a pulsing "Coming soon" label, two **non-clickable** store badges ("Coming soon to App Store / Google Play"), and a micro line "Launching first in Los Angeles — more cities right behind it."
+10. **Final CTA** (`#get`) — maroon rounded panel: the **cream logo lockup** (`.cta-logo`, `assets/bailamos-logo.png`) at the top in place of the old eyebrow, serif H2 "Your next floor is almost on the map.", paragraph, "Get early access →" button (opens waitlist), a pulsing "Coming soon" label, two **non-clickable** store badges ("Coming soon to App Store / Google Play"), and a micro line "Launching first in Los Angeles — more cities right behind it."
 
-11. **Footer** (`.foot`) — logo + tagline, three link columns (Product / Community / Company), bottom bar with copyright + dance styles.
+11. **Footer** (`.foot`) — the **black logo lockup** (`.foot-logo`, `assets/bailamos-logo-black.png`, ~188px wide) + tagline, three link columns (Product / Community / Company), bottom bar with copyright + dance styles.
 
 12. **Waitlist modal** (`#wlOverlay`) — see Interactions.
 
@@ -101,10 +101,18 @@ All in `assets/`. Real device screenshots (1320×2868) + founder photo.
 - `app-creator.png` — Become a creator (Creators section)
 - `app-create.png` — New event form (Creators section)
 - `rudy-story.jpg` — founder photo (Our Story), 512×512
-- The logo mark is pure CSS (gradient + serif "B") — no image needed.
+- `app-icon.png` — the app icon (1024×1024, rounded-square dancing-couple mark on a maroon→orange gradient). Used in the nav `.mark`. **Replaced** the old pure-CSS gradient "B".
+- `bailamos-logo.png` — full logo lockup in **cream** ("Bailamos! / Let's Dance", transparent bg, ~2.7:1, trimmed to content bounds). Used on the dark maroon **Final CTA** panel where the light artwork reads cleanly.
+- `bailamos-logo-black.png` — same lockup in **black** (transparent bg, trimmed). Used in the light **footer**. Both logo PNGs share the same artwork — pick by background: cream on dark, black on light.
 - Icons are inline SVG. No icon library required.
 
 **Screenshots note:** these are real iOS captures, so they're flat rectangles — the rounded "phone" corners come from the frame's `border-radius` + `overflow: hidden` (`.shotframe` / `.shotscreen` in `site.css`), not from the images. For App Store submission, use the flat versions (Apple requires no rounded corners).
+
+## What changed in this update
+Three brand images were added and wired in; **only `index.html`, `site.css`, and three new files in `assets/` changed** — `site-screens.js`, `waitlist.js`, and the tweaks files are untouched. The edits:
+1. **Nav mark** — the CSS-gradient "B" `<span>` became `<span class="mark"><img src="assets/app-icon.png" alt=""/></span>`; `.brand .mark` lost its gradient/`::after` and now clips an `object-fit: cover` image.
+2. **Final CTA** — the `<span class="eyebrow">Bailamos! · Let's dance</span>` became `<img class="cta-logo" src="assets/bailamos-logo.png" …>` (cream, on the maroon panel).
+3. **Footer** — the `.brand` wordmark lockup became `<a class="foot-logo"><img src="assets/bailamos-logo-black.png" …></a>` (black, on the light footer). A `[data-direction="nightlife"]` rule inverts it for the dark theme.
 
 ## Files (in this bundle)
 - `index.html` — the page (renamed from "Bailamos Site.html")
