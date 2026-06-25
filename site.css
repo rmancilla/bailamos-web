@@ -188,6 +188,7 @@ body {
 .nav-links a { font-size: 14.5px; font-weight: 600; color: var(--text-soft); transition: color .15s ease; }
 .nav-links a:hover { color: var(--accent); }
 .nav-cta { display: flex; align-items: center; gap: 16px; }
+.nav-cta .btn span.short { display: none; }
 .nav-toggle { display: none; }
 
 /* ═══════════════════════════ hero ═══════════════════════════ */
@@ -421,7 +422,7 @@ section { position: relative; }
   .problem-count { font-size: 88px; }
   .cta { padding: 52px 26px; border-radius: 26px; }
   .nav-cta .btn span.full { display: none; }
-  .nav-cta .btn span.short { display: inline !important; }
+  .nav-cta .btn span.short { display: inline; }
 }
 
 /* ═══════════ real-screenshot phone frames ═══════════ */
