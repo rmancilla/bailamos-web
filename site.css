@@ -153,7 +153,7 @@ body {
 .store {
   display: inline-flex; align-items: center; gap: 12px;
   padding: 11px 20px 11px 18px; border-radius: 14px;
-  background: var(--display); color: var(--page);
+  background: var(--display); color: var(--page); text-decoration: none;
   box-shadow: var(--shadow-soft); transition: transform .18s ease;
 }
 [data-direction="nightlife"] .store { background: #0E0709; color: #F6E9DC; border: 1px solid rgba(255,255,255,0.08); }
@@ -551,3 +551,22 @@ section { position: relative; }
 .wl-success p { font-size: 16px; color: var(--text-soft); margin-top: 12px; line-height: 1.5; }
 .wl-success .wl-done { margin-top: 24px; justify-content: center; }
 @media (max-width: 480px) { .wl-card { padding: 30px 22px 26px; } .wl-card h3 { font-size: 30px; } }
+
+/* ── city coverage map modal ── */
+.cm-card { max-width: 560px; }
+.cm-map {
+  margin-top: 18px; height: 320px; border-radius: 16px;
+  border: 1px solid var(--line); overflow: hidden; background: var(--surface-2);
+  z-index: 0; /* keep Leaflet panes below the close button */
+}
+.cm-map .leaflet-container { font: inherit; background: var(--surface-2); }
+.cm-tip {
+  background: var(--display); color: var(--page); border: none;
+  border-radius: 8px; padding: 3px 9px; font-weight: 700; font-size: 12px;
+  box-shadow: 0 6px 18px -8px rgba(46,17,12,0.7);
+}
+.cm-tip::before { display: none; } /* hide Leaflet's default tooltip arrow */
+.cm-status { font-size: 12.5px; color: var(--muted); text-align: center; margin: 12px 0 0; }
+.cm-ready { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.cm-ready .cm-download, .cm-ready .cm-join { justify-content: center; width: 100%; }
+@media (max-width: 480px) { .cm-map { height: 260px; } }
