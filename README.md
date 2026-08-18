@@ -121,6 +121,7 @@ Three brand images were added and wired in; **only `index.html`, `site.css`, and
 - `waitlist.js` — waitlist modal logic + **the endpoint you must configure**
 - `tweaks-panel.jsx`, `site-tweaks.jsx` — design-time theme toggle (omit in production)
 - `assets/` — images listed above
+- `_headers` — cache-control rules for the deploy (Cloudflare Pages / Netlify)
 
 ## Hosting
-It's a static site — host the contents of this folder on any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3+CloudFront). `index.html` is the entry point; references are relative, so no config needed. For the waitlist, either (a) point `WAITLIST_ENDPOINT` at an existing API with CORS enabled, or (b) deploy on a platform with serverless functions (Vercel/Netlify) and add a same-origin `/api/waitlist` handler that writes to your store — then set `WAITLIST_ENDPOINT = "/api/waitlist"`.
+It's a static site — host the contents of this folder on any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3+CloudFront). `index.html` is the entry point; references are relative, so no config needed. On Cloudflare Pages or Netlify, `_headers` sets cache-control: scripts and styles revalidate on every load so a deploy is visible immediately, while `assets/` is cached for a week. Other hosts ignore that file — configure the equivalent there, or a shipped fix can sit invisible behind a stale cached script. For the waitlist, either (a) point `WAITLIST_ENDPOINT` at an existing API with CORS enabled, or (b) deploy on a platform with serverless functions (Vercel/Netlify) and add a same-origin `/api/waitlist` handler that writes to your store — then set `WAITLIST_ENDPOINT = "/api/waitlist"`.

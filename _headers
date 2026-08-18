@@ -1,0 +1,24 @@
+# Cloudflare Pages / Netlify header rules.
+#
+# Pages' default for static assets is `public, max-age=14400` — four hours
+# during which a browser serves its stored copy WITHOUT revalidating. None of
+# the scripts below are content-hashed or version-queried, so a deploy stayed
+# invisible in any tab that had already fetched them (this is exactly how a
+# city-map.js fix shipped and could not be seen without a hard reload).
+#
+# index.html is already `max-age=0, must-revalidate` by default, so the page
+# itself is always current; the rules here bring its local scripts and styles
+# in line. Revalidation costs one conditional request each and returns a 304
+# when nothing changed — negligible for four small files, and it means a
+# deploy is visible immediately.
+
+/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.css
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Images are the large files and change rarely — cache them hard. Any image
+# that does change should be renamed rather than replaced in place.
+/assets/*
+  Cache-Control: public, max-age=604800
