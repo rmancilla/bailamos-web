@@ -16,8 +16,8 @@ const CONFIG_ENDPOINT = "https://api.getbailamos.app/v1/config";
 // Used ONLY if the live /config fetch fails. Approximate — the deployed
 // site (getbailamos.app / *.pages.dev) fetches the real values instead.
 const FALLBACK_CITIES = [
-  { name: "Los Angeles", lat: 34.0522, lng: -118.2437, radiusMiles: 50 },
-  { name: "San Diego",   lat: 32.7157, lng: -117.1611, radiusMiles: 30 },
+  { name: "Los Angeles, CA", lat: 34.17892, lng: -117.87617, radiusMiles: 60 },
+  { name: "San Diego, CA",   lat: 32.93493, lng: -117.07578, radiusMiles: 30 },
 ];
 
 const MILES_TO_METERS = 1609.34;
@@ -78,8 +78,10 @@ const MILES_TO_METERS = 1609.34;
       const res = await fetch(CONFIG_ENDPOINT, { headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error("config " + res.status);
       const cfg = await res.json();
-      if (Array.isArray(cfg.launchCities) && cfg.launchCities.length) {
-        cities = cfg.launchCities;
+      // /config wraps everything under `flags`; tolerate a flat shape too.
+      const flags = cfg.flags ?? cfg;
+      if (Array.isArray(flags.launchCities) && flags.launchCities.length) {
+        cities = flags.launchCities;
       }
     } catch (err) {
       console.warn("[city-map] live config unavailable, using fallback:", err);
