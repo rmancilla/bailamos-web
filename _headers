@@ -12,10 +12,31 @@
 # when nothing changed — negligible for four small files, and it means a
 # deploy is visible immediately.
 
-/*.js
+# Listed one by one on purpose. `_headers` only supports a TRAILING wildcard —
+# `/assets/*` below matches, but `/*.js` and `/*.css` never do, so the rules
+# that used to be here were dead and Pages kept serving these at its four-hour
+# default. That is the exact failure this file was added to prevent, and it
+# resurfaced when a hero copy change shipped alongside the CSS that lays it
+# out: index.html is always fresh, so returning visitors got new markup against
+# a stale stylesheet. Verify with `curl -sI .../site.css | grep -i cache` after
+# a deploy, and add a line here whenever a script or stylesheet is added.
+
+/site.css
   Cache-Control: public, max-age=0, must-revalidate
 
-/*.css
+/city-map.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/site-screens.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/waitlist.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/tweaks-panel.jsx
+  Cache-Control: public, max-age=0, must-revalidate
+
+/site-tweaks.jsx
   Cache-Control: public, max-age=0, must-revalidate
 
 # Images are the large files and change rarely — cache them hard. Any image
