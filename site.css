@@ -215,7 +215,14 @@ body {
   box-shadow: 0 10px 24px -14px rgba(216,98,60,0.55);
 }
 .launch-badge svg { width: 17px; height: 17px; }
-.launch-badge b { font-weight: 800; }
+/* Two cities overflow the badge on a phone (the hero column is ~335px and the
+   text wants 413px), so it wraps. Balance the two lines instead of letting the
+   last one orphan, and keep a city name from ever splitting across the break —
+   without the nowrap, balancing lands on "Now launching in Los / Angeles and
+   San Diego". Together they give "Now launching in / Los Angeles and San Diego".
+   Older engines ignore text-wrap and just get the plain wrap. */
+.launch-badge > span:not(.lb-dot) { text-wrap: balance; }
+.launch-badge b { font-weight: 800; white-space: nowrap; }
 .launch-badge .lb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(216,98,60,0.55); animation: pulseDot 2s ease-out infinite; }
 @media (prefers-reduced-motion: reduce) { .launch-badge .lb-dot { animation: none; } }
 .hero .lede { font-size: 19px; color: var(--text-soft); margin-top: 22px; max-width: 480px; }
