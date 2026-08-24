@@ -122,6 +122,49 @@ Three brand images were added and wired in; **only `index.html`, `site.css`, and
 - `tweaks-panel.jsx`, `site-tweaks.jsx` — design-time theme toggle (omit in production)
 - `assets/` — images listed above
 - `_headers` — cache-control rules for the deploy (Cloudflare Pages / Netlify)
+- `_redirects` — the `/go` ad landing hop (Cloudflare Pages / Netlify)
+
+## App Store links and campaign attribution
+
+Every App Store link on the page is the same URL, written out in full seven
+times in `index.html`. There is no build step, so there is nowhere to hoist a
+constant to that would still leave a real `href` in the served HTML — the
+literals stay, and a token change is one find-and-replace over one file. The
+block comment at the top of `<body>` in `index.html` records the convention and
+the exact `sed` line.
+
+`?ct=` is the App Store Connect **campaign token**. It shows up under App
+Analytics → Sources → Campaigns and is what separates ad installs from website
+installs from App Store search. Max 50 characters, no spaces, lowercase-
+hyphenated by convention. Without it every download lands in the same
+generic/organic bucket.
+
+| Source | Token | Where it lives |
+|---|---|---|
+| Paid campaigns | `meta-citypicker` | `_redirects`, on `/go` |
+| This website | `website` | the seven `href`s in `index.html` |
+
+**`/go`** exists because Meta rejects `apps.apple.com` URLs under the Traffic
+objective — it insists an Apple link requires the App Promotion objective,
+which needs Meta SDK integration. A plain web URL on our own domain that
+redirects sidesteps that. It is deliberately a **302, not a 301**: the token
+changes per campaign, and a permanent redirect would sit in browser and CDN
+caches long after we changed it. There is no interstitial page and no
+analytics on the route — anything that delays the hop costs installs.
+
+`/go` is not linked from the site and should not be added to nav or a sitemap.
+
+Two things to re-check whenever this changes, against the live domain rather
+than a preview URL:
+
+```bash
+curl -sI https://www.getbailamos.app/go | grep -i -E '^(HTTP|location)'
+curl -s https://www.getbailamos.app | grep -o 'apps\.apple\.com[^"]*' | sort -u
+```
+
+The first must be a `302` whose `Location` still carries `?ct=meta-citypicker` —
+a redirect config silently dropping the query string is the usual failure. The
+second must show `?ct=website` on every hit.
 
 ## Hosting
 It's a static site — host the contents of this folder on any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3+CloudFront). `index.html` is the entry point; references are relative, so no config needed. On Cloudflare Pages or Netlify, `_headers` sets cache-control: scripts and styles revalidate on every load so a deploy is visible immediately, while `assets/` is cached for a week. Other hosts ignore that file — configure the equivalent there, or a shipped fix can sit invisible behind a stale cached script. For the waitlist, either (a) point `WAITLIST_ENDPOINT` at an existing API with CORS enabled, or (b) deploy on a platform with serverless functions (Vercel/Netlify) and add a same-origin `/api/waitlist` handler that writes to your store — then set `WAITLIST_ENDPOINT = "/api/waitlist"`.

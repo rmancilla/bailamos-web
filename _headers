@@ -22,3 +22,9 @@
 # that does change should be renamed rather than replaced in place.
 /assets/*
   Cache-Control: public, max-age=604800
+
+# /go is an ad landing hop, not a page — keep it out of search results. Whether
+# Pages attaches this to the 302 itself is worth confirming after a deploy; the
+# redirect target is what search engines index either way.
+/go
+  X-Robots-Tag: noindex
