@@ -12,31 +12,28 @@
 # when nothing changed — negligible for four small files, and it means a
 # deploy is visible immediately.
 
-# Listed one by one on purpose. `_headers` only supports a TRAILING wildcard —
-# `/assets/*` below matches, but `/*.js` and `/*.css` never do, so the rules
-# that used to be here were dead and Pages kept serving these at its four-hour
-# default. That is the exact failure this file was added to prevent, and it
-# resurfaced when a hero copy change shipped alongside the CSS that lays it
-# out: index.html is always fresh, so returning visitors got new markup against
-# a stale stylesheet. Verify with `curl -sI .../site.css | grep -i cache` after
-# a deploy, and add a line here whenever a script or stylesheet is added.
+# NOTE: these rules are correct and ARE applied by Pages — confirmed against
+# the origin, https://bailamos-web.pages.dev/site.css, which returns
+# `max-age=0, must-revalidate`.
+#
+# The custom domain does NOT. www.getbailamos.app rewrites max-age to 14400
+# (exactly four hours) on the way out, keeping `must-revalidate` from here but
+# replacing the max-age. That is a ZONE setting, not something this file can
+# reach: Caching -> Configuration -> Browser Cache TTL in the Cloudflare
+# dashboard, which overrides origin Cache-Control for cacheable content types.
+# Set it to "Respect Existing Headers" and these rules take effect.
+#
+# Tell-tale: .jsx files here DO get max-age=0 on the custom domain, because
+# text/jsx is not a type the zone caches (cf-cache-status: DYNAMIC), so the
+# override never touches them. .css and .js come back REVALIDATED and rewritten.
+#
+# Until the zone setting changes, a deploy that pairs an HTML change with a CSS
+# change renders half-applied for up to four hours for returning visitors.
 
-/site.css
+/*.js
   Cache-Control: public, max-age=0, must-revalidate
 
-/city-map.js
-  Cache-Control: public, max-age=0, must-revalidate
-
-/site-screens.js
-  Cache-Control: public, max-age=0, must-revalidate
-
-/waitlist.js
-  Cache-Control: public, max-age=0, must-revalidate
-
-/tweaks-panel.jsx
-  Cache-Control: public, max-age=0, must-revalidate
-
-/site-tweaks.jsx
+/*.css
   Cache-Control: public, max-age=0, must-revalidate
 
 # Images are the large files and change rarely — cache them hard. Any image
