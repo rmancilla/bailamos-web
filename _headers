@@ -23,8 +23,11 @@
 /assets/*
   Cache-Control: public, max-age=604800
 
-# /go is an ad landing hop, not a page — keep it out of search results. Whether
-# Pages attaches this to the 302 itself is worth confirming after a deploy; the
-# redirect target is what search engines index either way.
+# /go is an ad landing hop, not a page — keep it out of search results. Pages
+# does attach this to the 302 itself (verified against the live domain), so the
+# hop is marked noindex even though it never renders a body.
 /go
+  X-Robots-Tag: noindex
+
+/go/
   X-Robots-Tag: noindex

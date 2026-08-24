@@ -12,4 +12,10 @@
 # ?ct= is the App Store Connect campaign token — it surfaces the source under
 # App Analytics -> Sources -> Campaigns. Max 50 chars, no spaces.
 
-/go  https://apps.apple.com/us/app/bailamos-latin-dance-events/id6767940322?ct=meta-citypicker  302
+# Both spellings: Pages matches these as distinct paths, and /go/ without a
+# rule falls through to the index.html catch-all — i.e. it quietly serves the
+# whole marketing page at 200 instead of redirecting, losing the install and
+# the attribution. Keep the two lines in sync.
+
+/go   https://apps.apple.com/us/app/bailamos-latin-dance-events/id6767940322?ct=meta-citypicker  302
+/go/  https://apps.apple.com/us/app/bailamos-latin-dance-events/id6767940322?ct=meta-citypicker  302
