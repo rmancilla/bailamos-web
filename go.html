@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Bailamos! — Latin Dance Events</title>
+
+<!--
+  Paid-campaign landing page. Meta's ad review crawler follows redirects and
+  judges the FINAL destination, so the 302 that used to live at /go was
+  rejected under #1487810: an App Store URL is only allowed under the App
+  Promotion objective, which needs the Meta SDK. This page exists so the
+  crawler sees ordinary HTML at 200 with no app-store hop in the response
+  chain. Do not turn it back into a redirect.
+
+  Everything is inline and same-origin on purpose — no webfonts, no analytics,
+  no pixels, no consent banner. The page has ~1.5s to render before it hands
+  off, and anything that blocks paint or needs a tap defeats it.
+
+  The App Store URL is written EXACTLY ONCE, on the anchor below. The
+  auto-redirect reads it back off that anchor, so the ct= token can never drift
+  between the button and the hop.
+
+  If Meta rejects with #1487810 again, its crawler is executing JS and
+  following the handoff. Delete the whole <script> block at the end of this
+  file and reship — the page stays valid and button-only.
+-->
+
+<style>
+  /* Tokens lifted from site.css so this page matches the marketing site
+     without pulling in 33KB of stylesheet it does not use. */
+  :root {
+    --page:        #F3E9D8;
+    --hero:        radial-gradient(120% 90% at 78% 8%, #F8EEDC 0%, #F1E3CB 55%, #EAD9BC 100%);
+    --display:     #4A1620;
+    --text-soft:   #5C453C;
+    --muted:       #937F71;
+    --accent:      #D8623C;
+    --accent-deep: #C2502C;
+    --on-accent:   #FFF6EE;
+    --shadow-pill: 0 12px 26px -10px rgba(216,98,60,0.50);
+    /* Same stacks as the site. Manrope and Instrument Serif are Google-hosted
+       there; loading them here would be a third-party, render-blocking request
+       on a page measured in hundreds of milliseconds. The system fallbacks
+       already in the site's own stacks paint instantly. */
+    --sans:  "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --serif: "Instrument Serif", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--page);
+    background-image: var(--hero);
+    color: var(--display);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Centred column, held above the fold on a 390x844 phone once Safari's
+     chrome is accounted for. svh tracks the visible viewport on iOS; the vh
+     line before it is the fallback for engines without svh. */
+  main {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 24px 22px calc(24px + env(safe-area-inset-bottom));
+    text-align: center;
+  }
+
+  .icon {
+    width: 96px; height: 96px;
+    border-radius: 22px;
+    display: block;
+    /* Reserve the box before the PNG lands so nothing reflows under the
+       user mid-read, and so a slow image never leaves a white hole. */
+    background: linear-gradient(140deg, #E0714A 0%, #7E1530 100%);
+    box-shadow: 0 18px 34px -18px rgba(74,22,32,0.55);
+  }
+
+  .wordmark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin: 14px 0 0;
+    color: var(--display);
+  }
+  .wordmark b { color: var(--accent); font-weight: 500; }
+
+  h1 {
+    font-size: 25px;
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin: 18px 0 0;
+    max-width: 15ch;
+    text-wrap: balance;
+  }
+
+  .sub {
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--text-soft);
+    margin: 10px 0 0;
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+
+  .cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 330px;
+    min-height: 60px;
+    margin: 28px 0 0;
+    padding: 0 26px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-shadow: var(--shadow-pill);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cta:active { background: var(--accent-deep); transform: translateY(1px); }
+
+  /* Hidden until the script arms the handoff. With JS off nothing is taking
+     anyone anywhere, and the page should not claim otherwise. */
+  .handoff {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 16px 0 0;
+    min-height: 1em;
+  }
+  .handoff[hidden] { display: none; }
+
+  /* Short viewports (landscape, small phones): tighten so the button stays
+     reachable without scrolling. */
+  @media (max-height: 620px) {
+    .icon { width: 72px; height: 72px; border-radius: 17px; }
+    .wordmark { font-size: 28px; margin-top: 10px; }
+    h1 { font-size: 21px; margin-top: 12px; }
+    .sub { font-size: 15px; }
+    .cta { min-height: 54px; margin-top: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <img class="icon" src="/assets/app-icon-192.png" width="96" height="96"
+       alt="" fetchpriority="high" decoding="async"/>
+
+  <p class="wordmark">Bailamos<b>!</b></p>
+
+  <h1>Latin dance events in LA &amp; San Diego</h1>
+
+  <p class="sub">Live map. Salsa, bachata, kizomba. Free.</p>
+
+  <a class="cta" id="cta"
+     href="https://apps.apple.com/us/app/bailamos-latin-dance-events/id6767940322?ct=meta-citypicker">Download on the App Store</a>
+
+  <p class="handoff" id="handoff" hidden>Taking you to the App Store&hellip;</p>
+</main>
+
+<!-- Auto-handoff. Delete this whole block to ship the page button-only; see
+     the note at the top of the file. -->
+<script>
+  (function () {
+    var cta = document.getElementById('cta');
+    if (!cta) return;
+    var note = document.getElementById('handoff');
+    if (note) note.hidden = false;
+    setTimeout(function () {
+      // replace(), not href: keeps /go out of session history so the App
+      // Store back button returns to the ad, not into a redirect loop.
+      window.location.replace(cta.href);
+    }, 1500);
+  })();
+</script>
+
+</body>
+</html>

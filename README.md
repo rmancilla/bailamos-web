@@ -122,7 +122,8 @@ Three brand images were added and wired in; **only `index.html`, `site.css`, and
 - `tweaks-panel.jsx`, `site-tweaks.jsx` — design-time theme toggle (omit in production)
 - `assets/` — images listed above
 - `_headers` — cache-control rules for the deploy (Cloudflare Pages / Netlify)
-- `_redirects` — the `/go` ad landing hop (Cloudflare Pages / Netlify)
+- `go.html` — the paid-campaign landing page served at `/go` (see below)
+- `assets/app-icon-192.png` — small app icon for `/go`; the full-size one is 845KB
 
 ## App Store links and campaign attribution
 
@@ -144,13 +145,40 @@ generic/organic bucket.
 | Paid campaigns | `meta-citypicker` | `_redirects`, on `/go` |
 | This website | `website` | the seven `href`s in `index.html` |
 
-**`/go`** exists because Meta rejects `apps.apple.com` URLs under the Traffic
-objective — it insists an Apple link requires the App Promotion objective,
-which needs Meta SDK integration. A plain web URL on our own domain that
-redirects sidesteps that. It is deliberately a **302, not a 301**: the token
-changes per campaign, and a permanent redirect would sit in browser and CDN
-caches long after we changed it. There is no interstitial page and no
-analytics on the route — anything that delays the hop costs installs.
+**`/go`** is a real HTML page, not a redirect. It exists because Meta rejects
+`apps.apple.com` URLs under the Traffic objective — an Apple link requires the
+App Promotion objective, which needs Meta SDK integration.
+
+It was originally built as a 302 straight to the App Store. **That does not
+pass Meta's review.** Their ad-review crawler follows redirects and judges the
+final destination, so it landed on Apple anyway and rejected the ad:
+
+> The creative provided requires a different objective: App Url is only
+> supported by App Installs objective. (#1487810)
+
+So the hop had to become a page the crawler can read as ordinary content, with
+no app-store destination anywhere in the response chain. **Do not turn `/go`
+back into a redirect**, and do not add a `<meta http-equiv="refresh">` — that
+is a redirect as far as review is concerned.
+
+The page is deliberately minimal: one button, no nav, no footer, no links back
+to the site, and nothing loaded from a third party. It has about a second and a
+half to render before it hands off, so there are no webfonts (the site's
+Google-hosted Manrope and Instrument Serif would be a render-blocking
+third-party request; the system fallbacks already in the site's font stacks
+paint instantly), no analytics, no pixels and no consent banner. Styles are
+inlined rather than pulling the 33KB `site.css` it would barely use.
+
+The App Store URL appears exactly once, on the anchor. The auto-redirect reads
+it back off that anchor at ~1.5s via `location.replace()` — `replace` rather
+than `href` so `/go` stays out of session history and the back button returns
+to the ad instead of bouncing forward again. Keep that single-source property
+so the `ct` token can never drift between the button and the hop.
+
+If Meta ever rejects with #1487810 again, its crawler is executing JS and
+following the handoff. Delete the `<script>` block at the end of `go.html` and
+reship — the page stays valid and button-only. Conversion suffers; review
+passes.
 
 `/go` is not linked from the site and should not be added to nav or a sitemap.
 
@@ -159,12 +187,17 @@ than a preview URL:
 
 ```bash
 curl -sI https://www.getbailamos.app/go | grep -i -E '^(HTTP|location)'
+curl -s https://www.getbailamos.app/go | grep -o 'apps\.apple\.com[^"]*'
+curl -s -A "facebookexternalhit/1.1" https://www.getbailamos.app/go | head -50
 curl -s https://www.getbailamos.app | grep -o 'apps\.apple\.com[^"]*' | sort -u
 ```
 
-The first must be a `302` whose `Location` still carries `?ct=meta-citypicker` —
-a redirect config silently dropping the query string is the usual failure. The
-second must show `?ct=website` on every hit.
+The first must be `200` with **no** `location:` line — a `Location` header means
+a redirect rule came back and review will fail again. The second must print the
+App Store URL with `?ct=meta-citypicker` intact, straight out of the raw markup.
+The third must show the real headline and button in the source, since that is
+what the crawler sees. The fourth covers the main site's own links, which must
+show `?ct=website` on every hit.
 
 ## Hosting
 It's a static site — host the contents of this folder on any static host (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3+CloudFront). `index.html` is the entry point; references are relative, so no config needed. On Cloudflare Pages or Netlify, `_headers` sets cache-control: scripts and styles revalidate on every load so a deploy is visible immediately, while `assets/` is cached for a week. Other hosts ignore that file — configure the equivalent there, or a shipped fix can sit invisible behind a stale cached script. For the waitlist, either (a) point `WAITLIST_ENDPOINT` at an existing API with CORS enabled, or (b) deploy on a platform with serverless functions (Vercel/Netlify) and add a same-origin `/api/waitlist` handler that writes to your store — then set `WAITLIST_ENDPOINT = "/api/waitlist"`.
