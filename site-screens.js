@@ -13,7 +13,11 @@
     ['screen-map',     'assets/app-map.png',     'Map of socials near you', false],
     ['screen-list',    'assets/app-week.png',    'A week of socials as a list', false],
     ['screen-detail',  'assets/app-detail.png',  'Event detail with address, cover and DJ', false],
-    ['screen-saved',   'assets/app-saved.png',   'Your saved socials', true]
+    ['screen-saved',   'assets/app-saved.png',   'Your saved socials', true],
+    // Order below is b, c, a on purpose - it matches each figcaption.
+    ['screen-detail-a','assets/app-detail-b.png','Event detail: flyer, time, distance, date and cover', false],
+    ['screen-detail-b','assets/app-detail-c.png','Event detail: about, venue map and directions', false],
+    ['screen-detail-c','assets/app-detail-a.png','Event detail: live band, DJ lineup and other nights here', false]
   ];
   fills.forEach(([id, src, alt, floaty]) => {
     const el = document.getElementById(id);

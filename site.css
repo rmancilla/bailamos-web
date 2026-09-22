@@ -494,6 +494,22 @@ section { position: relative; }
   .creator-art { min-height: 520px; margin-top: 20px; }
 }
 
+/* ═══════════ event detail triptych ═══════════ */
+.detail-fan { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 58px; align-items: start; }
+.dshot { display: flex; flex-direction: column; align-items: center; }
+.dshot:nth-child(2) { margin-top: 0; }
+.dart { display: flex; justify-content: center; }
+.dart .shotframe { --fw: 262px; }
+.dshot:nth-child(1) .dart .shotframe { transform: rotate(-2.2deg); }
+.dshot:nth-child(3) .dart .shotframe { transform: rotate(2.2deg); }
+.dshot figcaption { margin-top: 26px; max-width: 300px; text-align: center; font-size: 15px; line-height: 1.55; color: var(--text-soft); }
+.dshot figcaption b { display: block; font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+@media (max-width: 940px) {
+  .detail-fan { grid-template-columns: 1fr; gap: 54px; }
+  .dart .shotframe { --fw: 276px; transform: none !important; }
+}
+
+
 /* live pill + coming-soon badges + cta join */
 .cnum .livepill {
   font-family: var(--sans); font-style: normal; font-size: 11px; font-weight: 800;
