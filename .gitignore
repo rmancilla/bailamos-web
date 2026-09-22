@@ -1,1 +1,7 @@
 .DS_Store
+
+# Agent skills — local tooling, not site content.
+# These must never ship: pushing main deploys this repo to Cloudflare Pages.
+.agents/
+.claude/
+skills-lock.json
