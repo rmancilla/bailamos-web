@@ -510,6 +510,17 @@ section { position: relative; }
 }
 
 
+/* ═══════════ in motion (fly-over loop + product tour) ═══════════ */
+.motion-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; }
+.motion-copy p { margin: 18px 0 30px; max-width: 30em; }
+.motion-art { display: flex; justify-content: center; }
+.motion-art .shotframe { --fw: 286px; }
+.shotscreen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 940px) {
+  .motion-grid { grid-template-columns: 1fr; gap: 38px; }
+  .motion-art { order: -1; }
+}
+
 /* live pill + coming-soon badges + cta join */
 .cnum .livepill {
   font-family: var(--sans); font-style: normal; font-size: 11px; font-weight: 800;
@@ -574,6 +585,13 @@ section { position: relative; }
 .wl-success p { font-size: 16px; color: var(--text-soft); margin-top: 12px; line-height: 1.5; }
 .wl-success .wl-done { margin-top: 24px; justify-content: center; }
 @media (max-width: 480px) { .wl-card { padding: 30px 22px 26px; } .wl-card h3 { font-size: 30px; } }
+
+/* ── product tour modal ── */
+.tour-card { max-width: 980px; }
+.tour-video {
+  width: 100%; display: block; margin-top: 18px; border-radius: 16px;
+  background: #000; aspect-ratio: 16 / 9;
+}
 
 /* ── city coverage map modal ── */
 .cm-card { max-width: 560px; }

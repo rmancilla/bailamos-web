@@ -5,3 +5,7 @@
 .agents/
 .claude/
 skills-lock.json
+
+# /brag working directory - renders, compositions and video output.
+# Must never ship: pushing main deploys this repo to Cloudflare Pages.
+brag-output*/

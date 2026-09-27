@@ -241,6 +241,27 @@
   </div>
 </section>
 
+<!-- ═══════════════ IN MOTION ═══════════════ -->
+<section class="band" id="motion">
+  <div class="wrap motion-grid">
+    <div class="motion-copy reveal">
+      <span class="eyebrow">See it move</span>
+      <h2 class="serif">Know the block before you go.</h2>
+      <p>Tap <b>Fly Over Venue</b> on any event and the map lifts into a 3D pass of the street &mdash; the door, the parking, the corner you&rsquo;ll be looking for. Useful the first time you show up somewhere alone.</p>
+      <button class="btn btn-primary" type="button" data-tour-open>Watch the 19-second tour</button>
+    </div>
+    <div class="motion-art reveal">
+      <div class="shotframe floatme">
+        <div class="shotscreen">
+          <video id="flyLoop" src="assets/flyover-loop.mp4" poster="assets/flyover-loop.jpg"
+                 muted loop playsinline autoplay preload="metadata"
+                 aria-label="Fly-over of the venue block in the Bailamos app"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════ SAVED ═══════════════ -->
 <section class="band" id="saved">
   <div class="wrap feature-grid">
@@ -474,6 +495,20 @@
   </div>
 </div>
 
+<!-- ═══════════════ product tour modal ═══════════════ -->
+<div class="wl-overlay tour-overlay" id="tourOverlay" hidden>
+  <div class="wl-backdrop" data-tour-close></div>
+  <div class="wl-card tour-card" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+    <button class="wl-close" aria-label="Close" data-tour-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <span class="eyebrow">The 19-second tour</span>
+    <h3 id="tourTitle" class="serif">Find your floor, anywhere you are.</h3>
+    <video id="tourVideo" class="tour-video" src="assets/tour.mp4" poster="assets/tour-poster.jpg"
+           controls playsinline preload="none"></video>
+  </div>
+</div>
+
 <!-- ═══════════════ city coverage map modal ═══════════════ -->
 <div class="wl-overlay cm-overlay" id="cmOverlay" hidden>
   <div class="wl-backdrop" data-cm-close></div>
@@ -520,6 +555,7 @@
 <script src="waitlist.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="city-map.js"></script>
+<script src="tour.js"></script>
 
 <!-- ═══════════════ tweaks panel ═══════════════ -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
