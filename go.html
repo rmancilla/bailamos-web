@@ -15,12 +15,24 @@
   chain. Do not turn it back into a redirect.
 
   Everything is inline and same-origin on purpose — no webfonts, no analytics,
-  no pixels, no consent banner. The page has ~1.5s to render before it hands
+  no pixels, no consent banner. The page has ~0.5s to render before it hands
   off, and anything that blocks paint or needs a tap defeats it.
 
-  The App Store URL is written EXACTLY ONCE, on the anchor below. The
-  auto-redirect reads it back off that anchor, so the ct= token can never drift
+  The App Store URL is written EXACTLY ONCE, on the anchor below. The script
+  derives everything else from it, so the pt=/ct= tokens can never drift
   between the button and the hop.
+
+  Campaign token: the ad's URL carries it as /go?c=<token> (lowercase letters,
+  digits, hyphens, max 50 chars, e.g. /go?c=la-sd-festival). The script swaps
+  it into the anchor's ct= before the button or the handoff is used. With no
+  c=, an invalid c=, or JS off, the anchor's default ct= is used. The raw HTML
+  always contains the full https App Store link, so the crawler sees the same
+  thing it saw in v2. Use Apple-generated links (they include pt=).
+
+  Handoff: the auto-redirect goes to the itms-apps:// form of the same URL so
+  iOS opens the native App Store app instead of rendering the listing inside
+  Instagram's in-app browser. The button keeps https:// (itms-apps does
+  nothing off iOS, and the button is the no-JS fallback).
 
   If Meta rejects with #1487810 again, its crawler is executing JS and
   following the handoff. Delete the whole <script> block at the end of this
@@ -172,7 +184,7 @@
   <p class="sub">Live map. Salsa, bachata, kizomba. Free.</p>
 
   <a class="cta" id="cta"
-     href="https://apps.apple.com/us/app/bailamos-latin-dance-events/id6767940322?ct=meta-citypicker">Download on the App Store</a>
+     href="https://apps.apple.com/app/apple-store/id6767940322?pt=98774807&amp;ct=meta-oct-lasd&amp;mt=8">Download on the App Store</a>
 
   <p class="handoff" id="handoff" hidden>Taking you to the App Store&hellip;</p>
 </main>
@@ -184,12 +196,21 @@
     var cta = document.getElementById('cta');
     if (!cta) return;
     var note = document.getElementById('handoff');
+
+    // Optional campaign token from the ad URL: /go?c=la-sd-festival
+    var m = /[?&]c=([^&#]*)/.exec(location.search);
+    var token = m ? decodeURIComponent(m[1]).toLowerCase() : '';
+    if (/^[a-z0-9-]{1,50}$/.test(token)) {
+      cta.href = cta.href.replace(/([?&]ct=)[^&]*/, '$1' + token);
+    }
+
     if (note) note.hidden = false;
     setTimeout(function () {
       // replace(), not href: keeps /go out of session history so the App
       // Store back button returns to the ad, not into a redirect loop.
-      window.location.replace(cta.href);
-    }, 1500);
+      // itms-apps:// opens the native App Store app on iOS.
+      window.location.replace(cta.href.replace(/^https:/, 'itms-apps:'));
+    }, 500);
   })();
 </script>
 
