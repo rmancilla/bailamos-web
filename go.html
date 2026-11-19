@@ -179,7 +179,7 @@
 
   <p class="wordmark">Bailamos<b>!</b></p>
 
-  <h1>Latin dance events in LA &amp; San Diego</h1>
+  <h1 id="headline">Latin dance events in LA &amp; San Diego</h1>
 
   <p class="sub">Live map. Salsa, bachata, kizomba. Free.</p>
 
@@ -202,6 +202,13 @@
     var token = m ? decodeURIComponent(m[1]).toLowerCase() : '';
     if (/^[a-z0-9-]{1,50}$/.test(token)) {
       cta.href = cta.href.replace(/([?&]ct=)[^&]*/, '$1' + token);
+      // Bay Area campaigns (c=sf-...) get a Bay Area headline. The raw HTML
+      // keeps the LA / San Diego default, so the crawler and no-JS visitors
+      // see the same page as before.
+      if (/^sf-/.test(token)) {
+        var h = document.getElementById('headline');
+        if (h) h.textContent = 'Latin dance events in the Bay Area';
+      }
     }
 
     if (note) note.hidden = false;
